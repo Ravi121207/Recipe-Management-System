@@ -14,9 +14,6 @@ def receipes(request):
         receipe_name = data.get('receipe_name')
         receipe_description = data.get('receipe_description')
         
-        # print(receipe_name)
-        # print(receipe_description)
-        # print(receipe_image)
         
         Receipe.objects.create(
             receipe_image=receipe_image,
@@ -101,12 +98,7 @@ def register(request):
         username = request.POST.get('username')
         password = request.POST.get('password')
         
-        user = User.objects.filter(username = username)
-        
-        # if len(username)<3:
-        #     messages.error(request,"Please fill the from correctly")
-  
-    
+        user = User.objects.filter(username = username) 
         
         if user.exists():
             messages.info(request, "Username already taken.")
@@ -121,4 +113,5 @@ def register(request):
         user.save()
         messages.info(request, "Account created successfully.")
         return redirect('/register/')
+
     return render(request ,"register.html")
